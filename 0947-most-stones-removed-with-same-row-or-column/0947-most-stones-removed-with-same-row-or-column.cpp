@@ -56,9 +56,9 @@ public:
             a = find_set(a);
             b = find_set(b);
             if(a != b){
-                if(size[a] < size[b])swap(a, b);
+                // if(size[a] < size[b])swap(a, b);
                 parent[b] = a;
-                size[a] += size[b];
+                // size[a] += size[b];
             }
         }
     };
