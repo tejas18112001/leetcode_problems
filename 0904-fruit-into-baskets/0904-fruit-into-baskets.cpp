@@ -15,8 +15,8 @@ public:
             }
           
             
-            while(p.size()>2)
-            {
+            // while(p.size()>2)
+            // {
                 
                 while(j>=i && p.size()>2)
                 {
@@ -28,7 +28,7 @@ public:
                
             
                              
-            }
+            // }
          
             res = max(res , j-i+1);
             j++;
