@@ -31,19 +31,32 @@ public:
           vector<int>q;
        
          postorder(root1 , p);
-         postorder(root2 , q);
+         postorder(root2 , p);
 
         
         
         
-         for(auto i:p)
-            cout<<i<<" ";
-        cout<<"\n";
-        for(auto i:q)
-            cout<<i<<" ";
+//          for(auto i:p)
+//             cout<<i<<" ";
+//         cout<<"\n";
+//         for(auto i:q)
+//             cout<<i<<" ";
         
-        if(p == q)
-        return true ; 
-        return false;
+//         if(p == q)
+        
+        for(auto i:p)
+            cout<<i<<" ";
+        cout<<"\n" ;
+        
+        if(p.size()%2 == 1)return false;
+        int i = p.size()/2 - 1, j = p.size() -1  ;
+       // cout<<i<<" "<<j ;
+        while( i>= 0 && j >  p.size()/2 - 1)
+        {
+            if(p[i] != p[j])return false;
+            i--  , j--;
+        }
+            return true ; 
+      
     }
 };
