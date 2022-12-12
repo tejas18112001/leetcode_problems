@@ -14,23 +14,17 @@ public:
         }
       
         map<int , int>m ;
-        vector<int>r(n) ;
+      
         for(int i = 0 ; i<n ; i++)
         {
+            if(i!= 0 && p[i] %k == 0)
+                return true;
+            m[  p[i] % k  ]++  ;
             
-              m[  p[i] % k  ]++  ;
-              r[i] =  p[i] % k ;
-              
-        }
+         }
         
         
-        int cnt = -1 ;
-        for(int i =1 ; i < n ; i++) 
-        {
-            if(r[i] == 0)
-                return true ;
-            
-        }
+      
         
         int Max = INT_MIN ;
         for(auto i : m)
@@ -44,13 +38,13 @@ public:
         if(Max == 2)
         {
             
-        if(m[p[0] %k ] == 2 && r[0] != r[1])
+        if(m[p[0] %k ] == 2 && p[0]%k != p[1]%k)
             return true ;
-        if(m[p[n-1] %k] == 2 && r[n-1] != r[n-2] )
+        if(m[p[n-1] %k] == 2 && p[n-1]%k != p[n-2] %k)
             return true ;
         for(int i = 1; i<n-1 ; i++)
         {
-           if(m[p[i] % k ] == 2 && r[i] != r[i-1] &&  r[i] != r[i+ 1])
+           if(m[p[i] % k ] == 2 && p[i]%k != p[i-1] %k &&  p[i]%k != p[i+ 1]%k)
                return true ;
         }
         
