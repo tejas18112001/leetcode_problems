@@ -30,18 +30,16 @@ class Solution
         for(int i =1 ; i<n ; i++)
         {
             int p = arr[i] ;
-            if(p < arr[i-1])
-            for(int j = i-1 ; j>=0;j--)
+            
+            int j = i-1 ;
+            
+            while(j>=0 && p < arr[j])
             {
-                if(p <arr[j])
-                {
-                    
-                    arr[j+1] = arr[j] ;
-                    arr[j] = p ;
-                }
-                else
-                 break ;
+                arr[j+1] = arr[j] ;
+                j-- ;
             }
+            
+            arr[j+1] = p ;
         }
     }
 };
