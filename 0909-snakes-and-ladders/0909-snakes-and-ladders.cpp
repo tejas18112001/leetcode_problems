@@ -13,16 +13,17 @@ public:
          return {r ,c} ;
      }
     
+    
     int solution(vector<vector<int>>& board) {
         vector<bool>p(t*t+2 , false); 
-        queue<vector<int>>q ;
+        queue<pair<int ,int>>q ;
         
         q.push({1,0});
         p[1] = true;    
           
         while(!q.empty()) {
-            int currpos = q.front()[0] ;
-            int move = q.front()[1] ;
+            int currpos = q.front().first ;
+            int move = q.front().second;
             q.pop();
             
             for(int i =1; i<=6; i++) {
