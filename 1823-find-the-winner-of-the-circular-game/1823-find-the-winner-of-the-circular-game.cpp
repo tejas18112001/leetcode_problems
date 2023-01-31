@@ -2,23 +2,29 @@ class Solution {
 public:
     
 
-    int  solution(int n ,int k, int ind) {
-        if(n == 1)
+    void  solution(vector<int>&p ,int start , int k) {
+        if( p.size() == 1)
         {
-            return 0;
+            return ; 
         }
-        
-       
-        
-        
-        return (solution(n -1 , k ,ind ) + k)%n;
-       
+        start += k ;
+        int s = p.size() ;
+        start %= s;
+        p.erase(p.begin()+start) ;
+        solution( p , start , k ) ;
+        return ;
         
         
     }
     int findTheWinner(int n, int k) {
+      vector<int>p(n ) ;
+        k-- ;
+        for(int i = 1 ; i<=n;i++) {
+            p[i-1] = i ;
+        }
       
-       return solution(n , k ,0 )+1 ;
+        solution( p ,0, k   ) ;
+        return p[0] ;
        
     }
 };
