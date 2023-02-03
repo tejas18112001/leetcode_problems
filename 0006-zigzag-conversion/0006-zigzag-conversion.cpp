@@ -33,13 +33,16 @@ public:
                 j++ ;  //row increases 
                
         }
-            j = j -2 ;
-            i++ ;
+             
+             // when j came out from this loop   j(starting from zero ) = numOfRows
+            j = j-1;  // why 2 samajal aata
+            // i++ ;
              
             while(j > 0 && i<cols &&  k<n){
-                
-                    p[j][i] = s[k] ;
+                 if(p[j][i] == ' ') {
+                p[j][i] = s[k] ;
                     k++ ;
+                 } 
                 
                 i++ ,j-- ;
             }
