@@ -7,7 +7,7 @@ public:
         
         while(j<n)
         {
-            a[fruits[j]] ++ ;
+             a[fruits[j]] ++ ;
             if(p.find(fruits[j]) == p.end())
             {
                 p.insert(fruits[j]);
@@ -20,9 +20,9 @@ public:
                 
                 while(j>=i && p.size()>2)
                 {
-                    a[fruits[i]] --;
-                    if(a[fruits[i]] == 0)
-                        p.erase(fruits[i]) ;
+                a[fruits[i]] --;
+                 if(a[fruits[i]] == 0)
+                  p.erase(fruits[i]) ;
                     i++ ;
                 }
                
