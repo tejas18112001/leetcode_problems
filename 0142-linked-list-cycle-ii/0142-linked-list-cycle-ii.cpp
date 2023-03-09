@@ -12,18 +12,22 @@ public:
         if(head == NULL ||head ->next == NULL )return NULL ;
         ListNode *s ,*f , *n ;
         s = f  = n = head ;
-        while(f->next != NULL && f->next->next != NULL) {
-            f = f->next->next ;
+        map<ListNode* , int>mp ;
+        while(s->next != NULL) {
+            // f = f->next->next ;
+            if(mp[s] == 1)
+                return s ;
+            mp[s]++ ;
             s = s->next ;
-            if(s == f) {
-                while(s != n){
-                    s = s->next ;
-                    n = n->next ;
-                }
+//             if(s == f) {
+//                 while(s != n){
+//                     s = s->next ;
+//                     n = n->next ;
+//                 }
                 
-                if(s == n)
-                    return s ;
-            }
+//                 if(s == n)
+//                     return s ;
+//             }
         }
         return NULL;
     }
