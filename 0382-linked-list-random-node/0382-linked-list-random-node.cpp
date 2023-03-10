@@ -19,29 +19,38 @@
 class Solution {
 public:
     ListNode* head ;
+    int count = 0 ;
     
     Solution(ListNode* head) {
         this->head = head ;
+         ListNode*curr = head ; 
+        while (curr) {
+            
+            count++ ;
+            curr = curr->next;
+        }
     }
     
     int getRandom() {
        
-        int count = 0;
+        // int count = 0;
         int result = 0;
-        ListNode*curr = head;
-
-        while (curr) {
-            
-            count++ ;
-            if ( rand() % count == 0) {
-                result = curr->val;
-            }
-            
-            
-            curr = curr->next;
-        }
+        ListNode*temp = head;
      
-        return result ;
+      
+
+     
+        
+        result = rand()%count ;
+        
+        for(int i = 0 ; i<result ; i++) {
+            
+            temp = temp->next ;
+        }
+        
+        int res  = temp->val ;
+       
+        return res;
     }
 };
 
