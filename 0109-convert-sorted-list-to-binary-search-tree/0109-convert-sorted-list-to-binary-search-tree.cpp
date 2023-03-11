@@ -22,40 +22,28 @@
 class Solution {
 public:
     
-    TreeNode*solution(vector<int>arr , int left , int right ){
-        if(left > right) {
-            return NULL ;
-        }
-        
-        int mid = left  + ( right- left)/2 ;
-        
-        TreeNode*root = new TreeNode(arr[mid] );
-        root->left = solution(arr , left , mid-1) ;
-        root->right = solution(arr, mid+1 , right) ;
-        return root ;
-    }
+
     
     TreeNode* sortedListToBST(ListNode* head) {
-        if(head == NULL) return NULL ;
-        ListNode*s ,*t = head ;
-        int n = 0  , i = 0;
-        while(s) {
-            s = s->next ;
-            n++ ;
-        }
-        
-        vector<int>arr(n) ;
-        
-        while(t) {
-            arr[i] = t->val ;
-            t = t->next ;
-            i++ ;
-        }
-        
-        cout<<n<<"\n" ;
-        TreeNode*root = solution(arr , 0 , n-1) ;
-        
-        
-        return root ;
+       if(!head) return NULL;
+            if(!head->next) return new TreeNode(head->val);
+            
+            // fast/slow pointer to find the midpoint
+            auto slow = head;
+            auto fast = head;
+            auto pre = head;
+            while(fast && fast->next) {
+                pre = slow;
+                slow = slow->next;
+                fast = fast->next->next;
+            }
+            pre->next = NULL; // break two halves 
+            // cout<<pre->next<<" " ;
+            // slow is the midpoint, use as root
+            TreeNode* root = new TreeNode(slow->val);
+            root->left = sortedListToBST(head);
+            root->right = sortedListToBST(slow->next);
+            
+            return root;
     }
 };
