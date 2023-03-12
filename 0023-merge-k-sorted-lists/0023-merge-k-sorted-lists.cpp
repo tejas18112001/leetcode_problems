@@ -10,33 +10,39 @@
  */
 class Solution {
 public:
-    void solution(ListNode**root , int val) {
+
+    
+    
+    ListNode* solution(vector<int>res) {
+        
+        ListNode*root = NULL ;
+        
+         
+        for(int i = 0 ; i<res.size() ; i++) {
+            
         ListNode*temp  = new ListNode;
         ListNode*ptr ; 
-        temp->val = val ;
+        temp->val = res[i] ;
         temp->next = NULL ;
-         
-        if(*root == NULL) {
-            *root = temp ;
-        }
-        else {
-            
-            ptr = *root ; 
-            while(ptr->next != NULL) {
+            ptr = root ;
+            if(root == NULL) {
+                root = temp ;
+            }
+            else {
+            ptr = root ;
+            while(ptr->next != NULL){
                 ptr = ptr->next ;
             }
+            
             ptr->next = temp ;
+           
+           }
         }
+       return root ;
     }
     
     
-    ListNode*sol(vector<int>arr) {
-        ListNode*root = NULL ;
-        for(int i = 0 ; i<arr.size();  i++) {
-            solution(&root , arr[i]) ;
-        }
-        return root ;
-    }
+   
     
     
     ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -58,10 +64,8 @@ public:
         }
         
         sort(res.begin() , res.end()) ;
-        // cout<<"\n" ;
         
-        ListNode*ans = sol(res) ;
-        // cout<<ans->val ;
-        return ans ;
+
+        return solution(res) ;
     }
 };
