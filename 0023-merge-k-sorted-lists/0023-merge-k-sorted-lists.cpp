@@ -13,59 +13,67 @@ public:
 
     
     
-    ListNode* solution(vector<int>res) {
+  
+    ListNode*merge_two_lists(ListNode*&a , ListNode*&b) {
+        ListNode*root = new ListNode(0) ;
+        ListNode*curr = root ;
         
-        ListNode*root = NULL ;
-        
-         
-        for(int i = 0 ; i<res.size() ; i++) {
+        while(a or b) {
+            if(!a) {
+               curr->next = b ;
+               
             
-        ListNode*temp  = new ListNode;
-        ListNode*ptr ; 
-        temp->val = res[i] ;
-        temp->next = NULL ;
-            ptr = root ;
-            if(root == NULL) {
-                root = temp ;
-            }
-            else {
-            ptr = root ;
-            while(ptr->next != NULL){
-                ptr = ptr->next ;
+               break ;
             }
             
-            ptr->next = temp ;
-           
-           }
+             else if(!b) {
+                curr->next = a ; 
+              
+                break ;
+            }
+            
+            else if(a->val <= b->val) {
+                
+                curr->next = a ;
+                curr = curr->next ;
+                a = a->next ;
+                
+                
+            }
+            
+             else{
+                
+                curr->next = b ;
+                 curr = curr->next ;
+                b = b->next ;
+                
+            }
+            
+            
         }
-       return root ;
+         
+         return root->next ;
     }
-    
-    
    
     
     
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        if(lists.size() == 0) {
-            return NULL ;
-        }
-        vector<int>res ;
-        for(int i = 0 ; i<lists.size() ; i++) {
-            ListNode*s = lists[i] ;
-            while(s) {
-                
-                res.push_back(s->val) ;
-                s = s->next ;
+        int n = lists.size() ;
+        if(n == 0) return NULL ;
+        while(n > 1) {
+            vector<ListNode*>a ;
+            for(int i = 0 ; i<n; i+=2) {
+                if(i == n-1) a.push_back(lists[i]) ;
+                else {
+                    cout<<1<<"\n" ;
+                    a.push_back(merge_two_lists(lists[i] , lists[i+1])) ;
+                }
             }
+            
+            lists = a ;
+            n = lists.size() ;
         }
-        
-        for(auto i : res) {
-            cout<<i<<" ";
-        }
-        
-        sort(res.begin() , res.end()) ;
-        
-
-        return solution(res) ;
+        return lists[0] ;
     }
+    
 };
