@@ -11,21 +11,37 @@
  */
 class Solution {
 public:
-  
-    bool solution(TreeNode*l , TreeNode*r) {
-        if(!l || !r) {
-            return l == r ;
-            
+    string leftTree(TreeNode* root ,string &s ) {
+        if(root == NULL) {
+            return "-" ;
         }
-        if(l->val != r->val) 
-            return false ;
-        bool s1 = solution(l->left , r->right) ;
-        bool s2 = solution(l->right , r->left) ;
-        if(s1 == true && s2 == true) return true ;
-        return false ;
         
+        string left = leftTree(root->left , s) ;
+        string right = leftTree(root->right , s) ;
+        s = to_string(root->val) + "." + left+right ;
+        return s ;
     }
+    
+    string rightTree(TreeNode* root , string &s) {
+          if(root == NULL) {
+            return "-" ;
+        }
+        
+        
+        string right = rightTree(root->right , s) ;
+        string left = rightTree(root->left , s) ;
+        s = to_string(root->val) + "." + right + left ;
+        return s ;
+    }
+    
     bool isSymmetric(TreeNode* root) {
-       return solution(root->left , root->right) ;
+        string t1 = "" , t2 = "" ;
+        string s1 = leftTree(root->left , t1) ;
+               cout<<s1<<"\n" ;
+              
+        string s2 = rightTree(root->right , t2) ;
+         cout<<s2<<"\n" ;
+        if(s1 == s2) return true ;
+        return false ;
     }
 };
