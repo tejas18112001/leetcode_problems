@@ -30,18 +30,18 @@ public:
         
         // All posibilities of root node is the answer \U0001f447
         
-        if(root == p || root == q) 
-            return root ;
-        if((root->val > p->val  && root->val <q->val) || 
-           (root->val > q->val && root->val < p->val))
-            return root ;
+//         if(root == p || root == q) 
+//             return root ;
+//         if((root->val > p->val  && root->val <q->val) || 
+//            (root->val > q->val && root->val < p->val))
+//             return root ;
         
         
-        // its mean required value may be at left or right side of root
-        if(root->val > p->val) {  // go to left of tree
-            return solution(root->left , p ,q) ;
-        }
-        return solution(root->right , p , q) ;
+//         // its mean required value may be at left or right side of root
+//         if(root->val > p->val) {  // go to left of tree
+//             return solution(root->left , p ,q) ;
+//         }
+        return solution(root , p , q) ;
         
         
        
