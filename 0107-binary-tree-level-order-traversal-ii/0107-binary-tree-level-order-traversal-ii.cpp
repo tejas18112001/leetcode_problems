@@ -11,27 +11,27 @@
  */
 class Solution {
 public:
+    int depth(TreeNode* root) {
+        if(!root) return 0 ;
+     
+        
+        return max(depth(root->left) , depth(root->right)) + 1 ;
+    }
+    
+    void solution(TreeNode* root , vector<vector<int>>&ans , int level) {
+        if(!root) return ;
+        ans[level].push_back(root->val) ;
+        solution(root->left , ans , level-1) ;
+        solution(root->right , ans , level-1) ;
+    }
+    
     vector<vector<int>> levelOrderBottom(TreeNode* root) {
-        if(!root) {
-            return {} ;
-        }
-         queue<TreeNode*>q ;
-         q.push(root) ;
-         vector<vector<int>>ans ;
-         
-        while(!q.empty()) {
-            vector<int>p ;
-            int s = q.size() ; 
-            for(int i= 0 ; i<s; i++) {
-                TreeNode*t = q.front() ;
-                q.pop() ;
-                if(t->left)q.push(t->left) ;
-                if(t->right)q.push(t->right) ;
-                p.push_back(t->val) ;
-            }
-            ans.push_back(p) ;
-        }
-        reverse(ans.begin() , ans.end()) ;
-        return ans;
+       
+       // if(!root) return {} ;
+        int height = depth(root) ;
+         vector<vector<int>>ans(height) ;
+        solution(root , ans , height-1) ;
+        return ans ;
+        
     }
 };
