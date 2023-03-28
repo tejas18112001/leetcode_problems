@@ -26,7 +26,7 @@ public:
             // TreeNode*t = q.front() ;
            
             vector<int>p ;
-            int s = 200;
+            int s ;
             int t = q.size() ;
             for(int i = 0 ; i<t ; i++) {
                 TreeNode*t = q.front() ;
@@ -40,10 +40,10 @@ public:
                 
                 
             }
-         if(s != 200 ) {
-          // int k = p.back() ;
+//          if(s != 200 ) {
+         
           ans.push_back(s) ;
-         }
+         // }
             
         }
 
