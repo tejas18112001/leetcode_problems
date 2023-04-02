@@ -22,24 +22,53 @@ public:
             return !root1 && !root2;
         }
         
-       if( root1->val != root2->val) return false ;
+       // if( root1->val != root2->val) return false ;
         
-       bool left1 = flipEquiv(root1->left , root2->left) ;
-       bool right1 ;
-        if(left1) {
-             right1 = flipEquiv(root1->right , root2->right) ;
-        }else 
-            right1 = false ;
+//        bool left1 = flipEquiv(root1->left , root2->left) ;
+//        bool right1 ;
+       
+//              right1 = flipEquiv(root1->right , root2->right) ;
+//         }else 
+//             right1 = false ;
         
-        bool left2 = flipEquiv(root1->left , root2->right) ;
+//         bool left2 = flipEquiv(root1->left , root2->right) ;
         
-       bool right2  ;
-      if(left2) right2 = flipEquiv(root1->right , root2->left) ;
-        else 
-            right2 = false ;
+//        bool right2  ;
+//       if(left2) right2 = flipEquiv(root1->right , root2->left) ;
+//         else 
+//             right2 = false ;
        
        
            
-      return (left1 && right1) || (left2 && right2);
+      return root1->val == root2->val && ((flipEquiv(root1->left , root2->left ) && 
+               flipEquiv(root1->right , root2->right) )  || 
+           (flipEquiv(root1->left , root2->right) &&
+            flipEquiv(root1->right , root2->left) ) );
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 };
