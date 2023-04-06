@@ -7,9 +7,14 @@ public:
            return 1 ;
        }
         
-      if(dp[m][n] != 0 ) {
+      if(dp[m][n] != 0  ) {
           return dp[m][n] ; 
       }
+        
+    if(n <=  min(n ,m) && m <= min(n , m) && dp[n][m] != 0 ) {
+        return dp[n][m] ;
+    }
+        
     
     
      else {
