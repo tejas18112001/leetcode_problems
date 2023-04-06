@@ -11,26 +11,54 @@
  */
 class Solution {
 public:
+    
+    int maxDepth = 0 ;
+     int val  = 0;
+    void solution(TreeNode*root , int depth) {
+       
+        if(root) {
+            if(depth > maxDepth) {
+                val = root->val ;
+                maxDepth = depth ;
+                
+            }
+            
+             solution(root->left , depth +1) ;
+             solution(root->right , depth + 1) ;
+         
+        }
+       
+    }
+    
+    
+    
     int findBottomLeftValue(TreeNode* root) {
         queue<TreeNode*>q ;
         int val ;
         q.push(root) ;
+        TreeNode*t ;
         while(!q.empty()) {
             
             int s = q.size() ;
              val = q.front()->val ;
             for(int i = 0 ; i<s ; i++) {
-                TreeNode*t = q.front() ;
+                t = q.front() ;
                 q.pop() ;
-                if(t->left) {
-                    q.push(t->left) ;
-                }
+                
                 if(t->right) {
                     q.push(t->right) ;
                 }
                 
+                if(t->left) {
+                    q.push(t->left) ;
+                }
             }
         }
-        return val ;
+        
+        // solution(root ,1) ;
+        
+        
+        
+        return t->val;
     }
 };
