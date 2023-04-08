@@ -12,15 +12,15 @@
 class Solution {
 public:
     
-   bool solution(TreeNode*&root , TreeNode*&l) {
+   bool solution(TreeNode*&root , long long int min , long long max) {
        if(!root) return true ;
-       bool left = solution(root->left , l) ;
-        // if(left == false) return false ;
        
-       if(l != NULL  && l->val >= root->val) return false ;
-       l = root ;
        
-       bool right = solution(root->right , l) ;
+       
+       if(root->val <= min || root->val >= max) return false ;
+       
+       bool left = solution(root->left , min , root->val) ;
+       bool right = solution(root->right , root->val , max) ;
        
        return  left && right ;
        
@@ -35,10 +35,10 @@ public:
         
        
         TreeNode*t = NULL ;
-         long long int l = LLONG_MIN ;
+         long long int min = LLONG_MIN , max = LLONG_MAX ;
         
        
-       return solution(root , t) ;
+       return solution(root , min , max) ;
     
     }
 } ;
