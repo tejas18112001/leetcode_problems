@@ -12,23 +12,17 @@
 class Solution {
 public:
     
-   bool flag = true ;
-    
-   void solution(TreeNode*&root , TreeNode*&pre) {
-       if(!root) return  ;
-       solution(root->left , pre) ;
-     
-      
-       if(pre != NULL && pre->val >= root->val) {
-           flag = false ;
-           return ;
-       }
+   bool solution(TreeNode*&root , TreeNode*&l) {
+       if(!root) return true ;
+       bool left = solution(root->left , l) ;
+        // if(left == false) return false ;
        
-       pre = root ;
+       if(l != NULL  && l->val >= root->val) return false ;
+       l = root ;
        
-       solution(root->right , pre) ;
+       bool right = solution(root->right , l) ;
        
-       return ;
+       return  left && right ;
        
        
        
@@ -41,8 +35,10 @@ public:
         
        
         TreeNode*t = NULL ;
-         solution(root , t)  ;
-       return flag ;
+         long long int l = LLONG_MIN ;
+        
+       
+       return solution(root , t) ;
     
     }
 } ;
