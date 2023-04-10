@@ -14,19 +14,19 @@ public:
     bool solution(TreeNode*root , int target) {
         if(!root) return false;
         target =  target- root->val ;
-        //  if(target == 0 && !root->left && !root->right)
-        // {
-        //     return true ;
-        // }
+         if(target == 0 && !root->left && !root->right)
+        {
+            return true ;
+        }
         bool left = solution(root->left, target);
         bool right = solution(root->right, target);
         
-        // if(target!=0 && !root->left && !root->right) return false;
-        if(!root->left && !root->right)
-        {
-            if(target == 0) return true ;
-            else return false ;
-        }
+        // // if(target!=0 && !root->left && !root->right) return false;
+        // if(!root->left && !root->right)
+        // {
+        //     if(target == 0) return true ;
+        //     else return false ;
+        // }
         return left || right ;
         
     }
