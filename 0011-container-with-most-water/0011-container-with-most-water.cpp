@@ -5,16 +5,11 @@ public:
         int i = 0 , j = height.size()-1 ;
         while(j>=i) {
             ans = max(ans , min(height[i] , height[j])*(j-i)) ;
-            if(height[i] > height[j]) {
+            if(height[i] > height[j]) 
                 j-- ;
-            }else if(height[i] < height[j]) {
+            else 
                 i++ ;
-            }else {
-                if(i<height.size()-1 && j > 0 &&height[i+1] >= height[j-1])
-                    i++ ;
-                else 
-                    j-- ;
-            }
+            
         }
         return ans ;
     }
