@@ -1,0 +1,80 @@
+/*
+
+
+TO put a car in a parking for 1 hour : 
+if we put 3 car then bill is 250r
+if we put 2 car then bill is 200 
+if we put 1 car then bill is 150r  ;
+
+and if we more than 3 car bill per hour is then 20r per car ;
+
+We have given organzation of that car , its in time in praking and outtime ;
+You have to find total bill of that organization of parking ;
+
+Ex . 
+Organozation('A' , 13 ,14)
+Organozation('B' , 2 ,4) 
+Organozation('A' , 11 ,16)
+Organozation('C' , 12 ,13)
+
+Output :- 
+
+Bill of organization 'A' is :- 1200r 
+since number of car of organization 'A' are  2 
+and total parking time = 6 hour 
+So for 1 hour 200r 
+therefore for 6 hour total bill is 1200r 
+
+Similarly bill of organization 'B' is 300r
+wrtie c++ code for above
+
+
+
+*/
+
+
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+class Organization {
+private:
+    unordered_map<char, int> carCount;
+    unordered_map<char, int> parkingTime;
+
+public:
+    void addCar(char org, int inTime, int outTime) {
+        carCount[org]++;
+        parkingTime[org] += (outTime - inTime);
+    }
+
+    int calculateBill(char org) {
+        int totalCars = carCount[org];
+        int totalTime = parkingTime[org];
+        int totalBill = 0;
+
+        if (totalCars >= 3) {
+            totalBill = totalCars * 20 * totalTime;
+        } else if (totalCars == 2) {
+            totalBill = 200 * totalTime;
+        } else if (totalCars == 1) {
+            totalBill = 150 * totalTime;
+        }
+
+        return totalBill;
+    }
+};
+
+int main() {
+    Organization organization;
+    organization.addCar('A', 13, 14);
+    organization.addCar('B', 2, 4);
+    organization.addCar('A', 11, 16);
+    organization.addCar('C', 12, 13);
+
+    cout << "Bill of organization 'A' is: " << organization.calculateBill('A') << "r\n";
+    cout << "Bill of organization 'B' is: " << organization.calculateBill('B') << "r\n";
+    cout << "Bill of organization 'C' is: " << organization.calculateBill('C') << "r\n";
+
+    return 0;
+}
