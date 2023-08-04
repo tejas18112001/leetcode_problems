@@ -12,41 +12,29 @@
 class Solution {
 public:
     
-   
+    // root && subRoot && 
+    
+    bool isSame(TreeNode* root, TreeNode* subRoot) {
+       
+         if(!root || !subRoot) return root == subRoot ;
+         
+         
+         if(root->val != subRoot->val) return false ;
+             
+            return (isSame(root->left , subRoot->left)   &&
+                    isSame(root->right , subRoot->right));
+          
+    }
+    
 
-    int cnt = 0 ; 
-    string sol(TreeNode* root) {
-        if(root == NULL) {
-            return "-" ; 
-        }
-        
-        string left = sol(root->left) ;
-        string right = sol(root->right) ;
-        string s =  to_string(root->val)+"."  +left + right   ;
-        return s ;
-    }
-    
-    
-    string solution(TreeNode*root , string s) {
-        if(root == NULL) {
-            return "-";
-        }
-        string left = solution(root->left , s) ;
-        string right = solution(root->right , s) ;
-        string s2 = to_string(root->val) + "." + left + right ;
-        if(s2 == s)
-            cnt = 1 ;
-        return s2 ;
-    }
-    
     
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-      
-       string s = sol(subRoot) ;
-       cout<<s<<" " ;
-       solution(root ,s) ; 
-       
-        if(cnt == 1)return true ;
-        return false ;
+       if(subRoot == NULL) return true ;
+       if(root == NULL) return false ;
+       if(isSame(root , subRoot) ) return true ;
+            
+        return  isSubtree(root->left , subRoot) || isSubtree(root->right , subRoot) ;
     }
+    
+
 };
