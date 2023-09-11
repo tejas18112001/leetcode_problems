@@ -1,44 +1,48 @@
 class Solution {
 public:
-    vector<vector<int>>ans;
-    void solution(vector<int>& c ,vector<int>temp , int target , int ind) {
-        
-            if(target == 0) {
-                ans.push_back(temp);
-                 return ;
-            }
-           
-        for(int i = ind ; i<c.size() ;i++) {
-             if(i && c[i] == c[i-1] &&   i > ind )continue ;
-             if(c[i] > target) return ;
-            
-            temp.push_back(c[i]) ;
-            solution(c , temp ,target-c[i] , i+1) ;
-            temp.pop_back();
-        
-        }
+   
+    
+    vector<vector<int>>ans ;
+    
+    void solution(vector<int>&nums , int target , int index , vector<int>temp) {
        
-        
-        // solution(c , temp , target ,n, ind+1) ;
-        
+    if(target == 0){
+         ans.push_back(temp) ;
+         return  ;
     }
     
-    vector<vector<int>> combinationSum2(vector<int>& c, int target) {
-        int n = c.size();
-        vector<int>temp;
-        sort(c.begin() , c.end()) ;
-        solution(c ,temp ,target ,0);
-    
-//         set<vector<int>>s ;
-//         for(auto i:ans) {
-//             s.insert(i) ;
-//         }
+      
+//     if(index >0 && nums[index] == nums[index+1]) {
         
-//         // ans.clear() ;
-//         vector<vector<int>>res ;
-//         for(auto & i:s) {
-//             res.push_back(i) ;
-//         }
+//         solution(nums , target   ,index+1 , temp) ;
+//     }
+        
+//     if( target >= nums[index]) {
+//         temp.push_back(nums[index]) ;
+//         solution(nums , target - nums[index]  ,index+1 , temp) ;
+//         temp.pop_back() ;
+//     }
+    
+//     solution(nums , target  , index + 1 , temp) ;
+        
+        
+        for(int i = index ; i<nums.size() ; i++) {
+            if(i > index && nums[i] == nums[i-1])continue ;
+            if(nums[i] > target) break ;
+            temp.push_back(nums[i]) ;
+            solution(nums , target - nums[i] , i+1 , temp) ;
+            temp.pop_back() ;
+        }
+        
+   
+    
+    }
+    
+    
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<int>temp  ;
+        sort(candidates.begin() , candidates.end()) ;
+        solution(candidates , target , 0 , temp) ;
         return ans ;
     }
 };
