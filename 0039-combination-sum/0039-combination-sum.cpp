@@ -1,37 +1,34 @@
 class Solution {
 public:
+    
     vector<vector<int>>ans ;
-    // int a ;
-void solution(vector<int>& candidates ,vector<int>temp ,int target , int ind  , int n) {
+    
+    void solution(vector<int>&nums , int target , int index , vector<int>temp) {
+        if(index >= nums.size()) {
         
-        if(ind == n)
-        {
-            if(target == 0) {
-                ans.push_back(temp);
-                return ;
-            }
-            return ;
-        }
-        
-         if(candidates[ind] <= target) {
-             
-         
-         temp.push_back(candidates[ind]) ;
-        
-         solution(candidates ,temp , target  - candidates[ind] , ind ,n);
-         
-         temp.pop_back();
-         
-         }
-        solution(candidates ,temp ,  target,ind+1 ,n);
+        return  ;
+    }
+    
+    if(target == 0){
+         ans.push_back(temp) ;
+         return  ;
+    }
+    
+    if(target >= nums[index]) {
+        temp.push_back(nums[index]) ;
+        solution(nums , target - nums[index]  ,index , temp) ;
+        temp.pop_back() ;
+    }
+    
+    solution(nums , target  , index + 1 , temp) ;
+   
+    
     }
     
     
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        int n = candidates.size();
-       // a = n ;
-        vector<int>temp ;
-        solution(candidates ,temp ,target ,0 , n) ;
+        vector<int>temp  ;
+        solution(candidates , target , 0 , temp) ;
         return ans ;
     }
 };
