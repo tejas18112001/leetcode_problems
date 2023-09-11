@@ -9,7 +9,7 @@ public:
         
       else if(target == 0) {
           ans.push_back(temp) ;
-          
+          return ;
       }
         
 
@@ -21,7 +21,7 @@ public:
            
            temp.push_back(nums[i]) ;
            target = target - nums[i] ;
-           solution(nums , target, i , temp) ;
+           solution(nums , target  , i , temp) ;
            target = target + nums[i] ;
            temp.pop_back() ;
         
